@@ -1,5 +1,4 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
@@ -9,36 +8,36 @@ using namespace std;
 
 class Student {
 private:
-    string fullName;
-    string gender;
-    int birthYear;
-    int enrollmentYear;
-    string recordBookNumber;
-    double averageScore;
+    string fullName; //фио студента
+    string gender; //пол студента
+    int birthYear; //год рождения
+    int enrollmentYear; //год поступления
+    string recordBookNumber; //номер зачетной книжки
+    double averageScore; //средний балл
 
-    // Метод для расчета среднего балла
+    //метод для расчета среднего балла
     double calculateAverage(const vector<int>& scores) {
-        if (scores.empty()) return 0.0;
+        if (scores.empty()) return 0.0; //если нет оценок, возвращаем 0
         int sum = 0;
         for (int score : scores) {
-            sum += score;
+            sum += score; //суммируем оценки
         }
-        return static_cast<double>(sum) / scores.size();
+        return static_cast<double>(sum) / scores.size(); //считаем среднее
     }
 
 public:
-    // Конструктор без параметров
+    //конструктор без параметров
     Student() : fullName(""), gender(""), birthYear(0), enrollmentYear(0),
         recordBookNumber(""), averageScore(0.0) {}
 
-    // Конструктор с параметрами
+    //конструктор с параметрами
     Student(const string& fullName, const string& gender, int birthYear,
         int enrollmentYear, const string& recordBookNumber, double averageScore)
         : fullName(fullName), gender(gender), birthYear(birthYear),
         enrollmentYear(enrollmentYear), recordBookNumber(recordBookNumber),
         averageScore(averageScore) {}
 
-    // Сеттеры
+    //сеттеры
     void setFullName(const string& fullName) { this->fullName = fullName; }
     void setGender(const string& gender) { this->gender = gender; }
     void setBirthYear(int birthYear) { this->birthYear = birthYear; }
@@ -46,7 +45,7 @@ public:
     void setRecordBookNumber(const string& recordBookNumber) { this->recordBookNumber = recordBookNumber; }
     void setAverageScore(double averageScore) { this->averageScore = averageScore; }
 
-    // Геттеры
+    //геттеры
     string getFullName() const { return fullName; }
     string getGender() const { return gender; }
     int getBirthYear() const { return birthYear; }
@@ -54,12 +53,12 @@ public:
     string getRecordBookNumber() const { return recordBookNumber; }
     double getAverageScore() const { return averageScore; }
 
-    // Метод для пересчета среднего балла
+    //метод для пересчета среднего балла
     void recalculateAverageScore(const vector<int>& newScores) {
         averageScore = calculateAverage(newScores);
     }
 
-    // Методы сериализации
+    //методы сериализации
     void serialize() const {
         ofstream file("student.txt");
         if (file.is_open()) {
@@ -112,18 +111,18 @@ public:
         }
     }
 
-    // Метод для вывода информации о студенте
+    //метод для вывода информации о студенте
     void printInfo() const {
-        cout << "ФИО: " << fullName << endl;
-        cout << "Пол: " << gender << endl;
-        cout << "Год рождения: " << birthYear << endl;
-        cout << "Год поступления: " << enrollmentYear << endl;
-        cout << "Номер зачетной книжки: " << recordBookNumber << endl;
-        cout << "Средний балл: " << averageScore << endl;
+        cout << "фио: " << fullName << endl;
+        cout << "пол: " << gender << endl;
+        cout << "год рождения: " << birthYear << endl;
+        cout << "год поступления: " << enrollmentYear << endl;
+        cout << "номер зачетной книжки: " << recordBookNumber << endl;
+        cout << "средний балл: " << averageScore << endl;
     }
 };
 
-// Функция для имитации сессии
+//функция для имитации сессии
 void simulateSession(Student& student) {
     random_device rd;
     mt19937 gen(rd());
@@ -131,15 +130,16 @@ void simulateSession(Student& student) {
 
     vector<int> scores(4);
     for (int& score : scores) {
-        score = dist(gen); // Случайные оценки
+        score = dist(gen); //генерация случайных оценок
     }
     student.recalculateAverageScore(scores);
 }
 
 int main() {
-    std::system("chcp 65001 > nul"); // Переключаем консоль в UTF-8
-    std::setlocale(LC_ALL, "ru-RU"); // Устанавливаем русскую локаль
-    // Создание массива студентов
+    std::system("chcp 65001 > nul"); //переключаем консоль в UTF-8
+    std::setlocale(LC_ALL, "ru-RU"); //устанавливаем русскую локаль
+
+    //создание массива студентов
     Student students[3];
     students[0].setFullName("Иванов Иван Иванович");
     students[0].setGender("Мужской");
@@ -159,10 +159,10 @@ int main() {
     students[2].setEnrollmentYear(2017);
     students[2].setRecordBookNumber("34567");
 
-    // Создание студента в куче
+    //создание студента в куче
     Student* heapStudent = new Student("Федорова Ольга Викторовна", "Женский", 2002, 2020, "45678", 0.0);
 
-    // Имитируем три сессии
+    //имитация трех сессий
     for (int i = 0; i < 3; ++i) {
         for (Student& student : students) {
             simulateSession(student);
@@ -170,7 +170,7 @@ int main() {
         simulateSession(*heapStudent);
     }
 
-    // Сортировка студентов по убыванию среднего балла
+    //сортировка студентов по убыванию среднего балла
     vector<Student> allStudents(begin(students), end(students));
     allStudents.push_back(*heapStudent);
 
@@ -178,14 +178,14 @@ int main() {
         return a.getAverageScore() > b.getAverageScore();
         });
 
-    // Вывод результатов
-    cout << "Результаты студентов после трех сессий:" << endl;
+    //вывод результатов
+    cout << "результаты студентов после трех сессий:" << endl;
     for (const Student& student : allStudents) {
         student.printInfo();
         cout << endl;
     }
 
-    // Удаляем студента из кучи
+    //удаляем студента из кучи
     delete heapStudent;
 
     return 0;

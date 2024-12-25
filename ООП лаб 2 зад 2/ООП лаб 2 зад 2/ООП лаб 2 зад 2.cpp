@@ -1,57 +1,55 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <cstring>
 #include <stdexcept>
-#include <cmath> // Для std::round
+#include <cmath> 
 using namespace std;
 
 class Fraction {
 private:
-    int numerator;   // Числитель
-    int denominator; // Знаменатель
-    static int count; // Счетчик созданных объектов
+    int numerator; //числитель
+    int denominator; //знаменатель
+    static int count; //счетчик созданных объектов
 
 public:
-    // Конструкторы
+    //конструкторы
     Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {
         if (denominator == 0) {
-            throw invalid_argument("Знаменатель не может быть равен нулю");
+            throw invalid_argument("знаменатель не может быть равен нулю"); //проверка на ноль
         }
-        reduce(); // Сокращаем дробь при создании
-        ++count;  // Увеличиваем счетчик объектов
+        reduce(); //сокращаем дробь при создании
+        ++count; //увелсчетчик
     }
 
     Fraction(int numerator) : numerator(numerator), denominator(1) {
-        ++count; // Увеличиваем счетчик объектов
+        ++count; //увел счетчи
     }
 
     Fraction() : numerator(0), denominator(1) {
-        ++count; // Увеличиваем счетчик объектов
+        ++count; //увел счетчик 
     }
 
     ~Fraction() {
-        --count; // Уменьшаем счетчик объектов
+        --count; //уменьшаем счетчик 
     }
 
-    // Статический метод для получения счетчика объектов
+    //статический метод для получения счетчика объектов
     static int getCount() {
-        return count;
+        return count; //возвращаем количество созданных объектов
     }
 
-    // Метод для сокращения дроби
+    //метод для сокращения дроби
     void reduce() {
-        int gcdValue = gcd(abs(numerator), abs(denominator));
+        int gcdValue = gcd(abs(numerator), abs(denominator)); //вычисляем нод
         numerator /= gcdValue;
         denominator /= gcdValue;
 
-        // Убираем отрицание из знаменателя
-        if (denominator < 0) {
+        if (denominator < 0) { //убираем отрицание из знаменателя
             numerator = -numerator;
             denominator = -denominator;
         }
     }
 
-    // Статический метод для нахождения НОД
+    //статический метод для нахождения нод
     static int gcd(int n, int m) {
         while (m != 0) {
             int temp = m;
@@ -61,82 +59,82 @@ public:
         return n;
     }
 
-    // Перегрузка операторов
+    //перегрузка операторов
     Fraction operator+(const Fraction& other) const {
         return Fraction(
             numerator * other.denominator + other.numerator * denominator,
             denominator * other.denominator
-        );
+        ); //сложение дробей
     }
 
     Fraction operator-(const Fraction& other) const {
         return Fraction(
             numerator * other.denominator - other.numerator * denominator,
             denominator * other.denominator
-        );
+        ); //вычитание дробей
     }
 
     Fraction operator*(const Fraction& other) const {
         return Fraction(
             numerator * other.numerator,
             denominator * other.denominator
-        );
+        ); //умножение дробей
     }
 
     Fraction operator/(const Fraction& other) const {
         if (other.numerator == 0) {
-            throw invalid_argument("Деление на ноль недопустимо");
+            throw invalid_argument("деление на ноль недопустимо"); //проверка деления на ноль
         }
         return Fraction(
             numerator * other.denominator,
             denominator * other.numerator
-        );
+        ); //деление дробей
     }
 
-    // Вывод дроби
+    //вывод дроби
     void print() const {
-        cout << numerator << "/" << denominator << endl;
+        cout << numerator << "/" << denominator << endl; //вывод дроби в формате числитель/знаменатель
     }
 
-    // Статический метод для вывода десятичной дроби как обыкновенной
+    //статический метод для вывода десятичной дроби как обыкновенной
     static void printAsFraction(double decimal_fraction) {
-        const int precision = 1000000; // Для точности преобразования
-        int numerator = round(decimal_fraction * precision);
-        int denominator = precision;
-        int gcdValue = gcd(abs(numerator), abs(denominator));
+        const int precision = 1000000; //точность преобразования
+        int numerator = round(decimal_fraction * precision); //вычисляем числитель
+        int denominator = precision; //задаем знаменатель
+        int gcdValue = gcd(abs(numerator), abs(denominator)); //сокращаем дробь
         numerator /= gcdValue;
         denominator /= gcdValue;
         cout << numerator << "/" << denominator << endl;
     }
 
-    // Перегрузка метода для строковой десятичной дроби
+    //перегрузка метода для строковой десятичной дроби
     static void printAsFraction(const char* decimal_fraction) {
-        double value = atof(decimal_fraction); // Преобразуем строку в double
-        printAsFraction(value);
+        double value = atof(decimal_fraction); //преобразуем строку в double
+        printAsFraction(value); //вызываем метод с double
     }
 };
 
-// Инициализация статического члена
+//инициализация статического члена
 int Fraction::count = 0;
 
-// Тестирование класса Fraction
+//тестирование класса Fraction
 int main() {
-    std::system("chcp 65001 > nul"); // Переключаем консоль в UTF-8
-    std::setlocale(LC_ALL, "ru-RU"); // Устанавливаем русскую локаль
+    std::system("chcp 65001 > nul"); 
+    std::setlocale(LC_ALL, "ru-RU"); 
     try {
-        // Создаем объекты дробей
+        //создаем объекты дробей
         Fraction f1(3, 4);
         Fraction f2(5, 6);
         Fraction f3(7, 8);
 
-        // Вывод объектов
-        cout << "Дроби:" << endl;
+        //вывод объектов
+        cout << "дроби:" << endl;
         f1.print();
         f2.print();
         f3.print();
 
-        // Операции с дробями
-        cout << "\nРезультаты операций:" << endl;
+        //операции с дробями
+        cout << "\nрезультаты операций:" << endl;
         Fraction sum = f1 + f2;
         sum.print();
 
@@ -149,21 +147,21 @@ int main() {
         Fraction quot = f1 / f2;
         quot.print();
 
-        // Пример сокращения дробей
+        //пример сокращения дробей
         Fraction reducible(10, 20);
         reducible.print();
 
-        // Пример работы статических методов
-        cout << "\nДесятичная дробь как обыкновенная:" << endl;
+        //пример работы статических методов
+        cout << "\nдесятичная дробь как обыкновенная:" << endl;
         Fraction::printAsFraction(0.43);
         Fraction::printAsFraction("0.25");
 
-        // Счетчик объектов
-        cout << "\nКоличество созданных объектов Fraction: " << Fraction::getCount() << endl;
+        //счетчик объектов
+        cout << "\nколичество созданных объектов Fraction: " << Fraction::getCount() << endl;
 
     }
     catch (const exception& e) {
-        cerr << "Ошибка: " << e.what() << endl;
+        cerr << "ошибка: " << e.what() << endl; //вывод сообщения об ошибке
     }
 
     return 0;
