@@ -8,24 +8,24 @@
 
 using namespace std;
 
-// Функция инициализации одномерного массива
+//функция инита одномерного массива
 void initializeArray(double* array, int size) {
     for (int i = 0; i < size; ++i) {
         array[i] = i * sin(M_PI * i / 25);
     }
 }
 
-// Функция вывода одномерного массива
+//функция вывода одномерного массива
 void print1DArray(double* array, int size) {
     for (int i = 0; i < size; ++i) {
         cout << setw(10) << fixed << setprecision(4) << array[i];
-        if ((i + 1) % 5 == 0) cout << endl; // Переход на новую строку каждые 5 элементов
+        if ((i + 1) % 5 == 0) cout << endl; //переход на новую строку каждые 5 эл
     }
 }
 
-// Функция преобразования 1D массива в 2D массив
+//функция преобразования 1D массива в 2D массив
 double** transformArray(double* array, int rows, int cols) {
-    double** matrix = new double* [rows]; // Выделяем память под двумерный массив
+    double** matrix = new double* [rows]; //выделяем память под двумерный массив
     for (int i = 0; i < rows; ++i) {
         matrix[i] = new double[cols];
     }
@@ -33,17 +33,17 @@ double** transformArray(double* array, int rows, int cols) {
     int index = 0;
     for (int i = 0; i < rows; ++i) {
         double sum = 0.0;
-        for (int j = 1; j < cols; ++j) { // Пропускаем первый элемент
+        for (int j = 1; j < cols; ++j) { //вропускаем первый эл
             matrix[i][j] = array[index++];
             sum += matrix[i][j];
         }
-        matrix[i][0] = sum; // Первый элемент строки — сумма остальных
+        matrix[i][0] = sum; //1-ый эл строки — сумма остальных
     }
 
     return matrix;
 }
 
-// Функция вывода двумерного массива
+//функция вывода двумерного массива
 void print2DArray(double** matrix, int rows, int cols) {
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
@@ -53,7 +53,7 @@ void print2DArray(double** matrix, int rows, int cols) {
     }
 }
 
-// Функция освобождения памяти двумерного массива
+//функция освобождения памяти двумерного массива
 void free2DArray(double** matrix, int rows) {
     for (int i = 0; i < rows; ++i) {
         delete[] matrix[i];
@@ -62,27 +62,27 @@ void free2DArray(double** matrix, int rows) {
 }
 
 int main() {
-    std::system("chcp 65001 > nul"); // Переключаем консоль в UTF-8
+    std::system("chcp 65001 > nul"); // насройки консоли для русского языка
     std::setlocale(LC_ALL, "ru-RU");
-    const int size = 25; // Размер одномерного массива
-    const int rows = 5, cols = 5; // Размеры двумерного массива
+    const int size = 25; //размер одномерного массива
+    const int rows = 5, cols = 5; //размеры двумерного массива
 
-    // Выделяем память под одномерный массив
+    //выделяем память под одномерный массив
     double* array1D = new double[size];
 
-    // Инициализация и вывод одномерного массива
+    //инит и вывод одномерного массива
     cout << "Одномерный массив:" << endl;
     initializeArray(array1D, size);
     print1DArray(array1D, size);
 
-    // Преобразование в двумерный массив
+    //1D -> 2D
     double** array2D = transformArray(array1D, rows, cols);
 
-    // Вывод двумерного массива
+    //вывод двумерного массива
     cout << "\nДвумерный массив:" << endl;
     print2DArray(array2D, rows, cols);
 
-    // Освобождение памяти
+    //освобождение памяти
     delete[] array1D;
     free2DArray(array2D, rows);
 

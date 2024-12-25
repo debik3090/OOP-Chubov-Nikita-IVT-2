@@ -1,52 +1,53 @@
 ﻿
 #include <iostream>
-#include <cstring> // Для стандартной strchr
-#include <stdexcept> // Для обработки исключений
+#include <cstring> 
+#include <stdexcept> 
 
 using namespace std;
 
-// Собственная версия функции strchr
+//собственная версия функции strchr
 char* customStrchr(char* s, char c) {
     if (s == nullptr) {
-        throw invalid_argument("Строка не должна быть null");
+        throw invalid_argument("строка не должна быть null"); //выбрасываем исключение если строка пустая
     }
 
-    // Идем по строке посимвольно
+    //идем по строке посимвольно
     for (size_t i = 0; s[i] != '\0'; ++i) {
         if (s[i] == c) {
-            return &s[i]; // Возвращаем указатель на первый найденный символ
+            return &s[i]; //возвращаем указатель на первый найденный символ
         }
     }
-    return nullptr; // Символ не найден
+    return nullptr; //символ не найден
 }
 
 int main() {
-    std::system("chcp 65001 > nul"); // Переключаем консоль в UTF-8
-    std::setlocale(LC_ALL, "ru-RU");
-    // Тестовые данные
-    char testString[] = "Привет, мир!";
-    char testChar = 'м';
+    std::system("chcp 65001 > nul"); //настройка дял ком стр на русский язык
+    std::setlocale(LC_ALL, "ru-RU"); 
 
-    // Результат работы стандартной функции
+    //тестовые данные
+    char testString[] = "Привет, мир!";
+    char testChar = 'м'; //символ для поиска
+
+    //результат работы стандартной функции strchr
     char* standardResult = strchr(testString, testChar);
 
-    // Результат работы собственной функции
+    //результат работы собственной функции customStrchr
     char* customResult = nullptr;
     try {
-        customResult = customStrchr(testString, testChar);
+        customResult = customStrchr(testString, testChar); //вызываем собственную функцию
     }
     catch (const invalid_argument& e) {
-        cerr << "Ошибка: " << e.what() << endl;
-        return 1;
+        cerr << "ошибка: " << e.what() << endl; //выводим сообщение об ошибке
+        return 1; //завершаем программу с кодом ошибки
     }
 
-    // Вывод результатов
-    cout << "Тестовая строка: " << testString << endl;
-    cout << "Символ для поиска: " << testChar << endl;
-    cout << "Результат стандартной функции: "
-        << (standardResult ? standardResult : "Символ не найден") << endl;
-    cout << "Результат собственной функции: "
-        << (customResult ? customResult : "Символ не найден") << endl;
+    //вывод результатов
+    cout << "тестовая строка: " << testString << endl; //выводим исходную строку
+    cout << "символ для поиска: " << testChar << endl; //выводим символ для поиска
+    cout << "результат стандартной функции: "
+        << (standardResult ? standardResult : "символ не найден") << endl; //результат стандартной strchr
+    cout << "результат собственной функции: "
+        << (customResult ? customResult : "символ не найден") << endl; //результат customStrchr
 
     return 0;
 }
