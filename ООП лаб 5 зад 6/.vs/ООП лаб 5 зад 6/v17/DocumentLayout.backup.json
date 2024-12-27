@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CCB11275-2B4A-461A-863C-E9739A114AA2}|\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.vcxproj|C:\\Users\\USER\\source\\repos\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CCB11275-2B4A-461A-863C-E9739A114AA2}|\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.vcxproj|solutionrelative:\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp",
+              "RelativeDocumentMoniker": "\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp*",
+              "RelativeToolTip": "\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6\\\u041E\u041E\u041F \u043B\u0430\u0431 5 \u0437\u0430\u0434 6.cpp*",
+              "ViewState": "AgIAAOoBAAAAAAAAAAAIwBoCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-27T11:22:59.077Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
